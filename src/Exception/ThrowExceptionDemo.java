@@ -34,6 +34,7 @@ public class ThrowExceptionDemo {
 			c.run();
 		} catch (FileNotFoundException e) {
 			System.out.println("out.txt 파일이 필요합니다.");
+			System.out.println("out.txt 파일이 필요합니다.2");
 		}
 		
 		catch (IOException e) {
