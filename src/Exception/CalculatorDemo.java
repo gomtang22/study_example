@@ -1,5 +1,21 @@
 package Exception;
 
+
+class DivdeException extends Exception {
+	
+	public int left;
+	public int right;
+	
+	DivdeException(){
+		super();  //기본생성자 
+	}
+	DivdeException(String message, int left, int right){
+		super(message);   //기타 생성자 
+		this.left = left ;
+		this.right = right; 
+	}
+	
+}
 class Calculator{
 	int left, right;
 	public void setOprands(int left, int right) {
@@ -7,32 +23,21 @@ class Calculator{
 		this.right = right;
 	}
 
+	public  String toString() {  //오버라이딩 
+		return super.toString() + "* left : " + this.left + " * right : "+ this.right ;
+		
+	}
 	public void devide() {
-		//계산결과는 오류가 발생했습니다 :/ by zero
-		try {
-			System.out.print("계산결과는 ");
-			System.out.print(this.left/this.right);
-			System.out.print(" 입니다. ");				
-		} catch(Exception e) {
-			/*
-				e.getMessage()
-				/ by zero
-				
-				
-				e.toString()
-				java.lang.ArithmeticException: / by zero
-				
-				
-				e.printStackTrace()
-				java.lang.ArithmeticException: / by zero
-					at Exception.Calculator.devide(CalculatorDemo.java:14)
-					at Exception.CalculatorDemo.main(CalculatorDemo.java:32)
-			 
-			 */
-			System.out.println("\n\ne.getMessage()\n"+e.getMessage());
-			System.out.println("\n\ne.toString()\n"+e.toString());
-			System.out.println("\n\ne.printStackTrace()");
+		try {if(right == 0) {
+			throw new DivdeException("0으로 나눌수 없습니다.", this.left, this.right);
+		}
+		System.out.println(this.left/this.right);
+		}
+		catch(DivdeException e) {
 			e.printStackTrace();
+            System.out.println(e.left);
+			System.out.println(e.right);
+			
 		}
 	}
 
@@ -44,7 +49,12 @@ public class CalculatorDemo {
 		// TODO Auto-generated method stub
 		Calculator c1 = new Calculator();
 		c1.setOprands(10,0);
-		c1.devide();
+		System.out.println(c1);
+		try {  c1.devide();
+			
+		} catch(ArithmeticException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

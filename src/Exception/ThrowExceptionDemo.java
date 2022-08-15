@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class B{
-	void run() throws FileNotFoundException, IOException {
+	void run() throws FileNotFoundException, IOException {   //예외처리를 밖에서 하도록 빼준다. 
 		BufferedReader bReader = null; //변수 쓸수 있도록 밖으로 빼줘야함 
 		String input = null;           //변수 쓸수 있도록 밖으로 빼줘야함 
 		bReader = new BufferedReader(new FileReader("out.txt"));
